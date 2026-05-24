@@ -9,10 +9,13 @@ public class Hero {
     public Hero(){
 
     }
+
     public Hero(int x, int y){
         this.x = x;
         this.y = y;
     }
+
+
     public int getX(){
         return x;
     }
@@ -30,5 +33,22 @@ public class Hero {
     }
     public int getSpeed(){
         return speed;
+    }
+
+    public void move(int dx, int dy){
+        x=x+dx;
+        y=y+dy;
+        if(x<0){
+            x=0;
+        }
+        if(x>780-width){
+            x=780-width;
+        }
+        if(y<0){
+            y=0;
+        }
+        if(y>560-height){
+            y=560-height;
+        }
     }
 }
