@@ -19,6 +19,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 
     private boolean wPressed=false, sPressed=false, aPressed=false, dPressed=false, spacePressed=false, shiftPressed=false;
 
+    private int cameraX=0;
+    private int cameraY=0;
+
     public GamePanel(){
         setBackground(Color.BLACK);
         addKeyListener(this);
@@ -68,6 +71,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
             dx+=hero.getSpeed();
         }
         hero.move(dx,dy);
+        cameraX=cameraX-dx;
+        cameraY=cameraY-dy;
     }
 
 
@@ -80,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(Color.white);
-        g.fillRect(hero.getX(),hero.getY(),hero.getWidth(),hero.getHeight());
+        g.fillRect(400,300,hero.getWidth(),hero.getHeight());
     }
     @Override
     public void keyTyped(KeyEvent e) {
