@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
     private static final long FRAME_TIME = 1000000000/FPS;
 
     private Hero hero = new Hero(400,300);
+    private Enemy khukharRakshas = new Enemy(600,400,hero);
 
     private boolean wPressed=false, sPressed=false, aPressed=false, dPressed=false, spacePressed=false, shiftPressed=false;
 
@@ -76,8 +77,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
             dy=dy*0.707f;
         }
         hero.move(dx,dy);
+        khukharRakshas.move();
         cameraX=cameraX-dx;
         cameraY=cameraY-dy;
+        System.out.println("hero speed: " + hero.getSpeed() + " enemy speed: " + khukharRakshas.getSpeed());
     }
 
 
@@ -107,7 +110,22 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 
         g.setColor(Color.white);
         g.fillRect(400,300,hero.getWidth(),hero.getHeight());
+
+        //khukharRakshas enemy
+
+        g.setColor(Color.red);
+        int screenX = 400 + (int)(khukharRakshas.getX() - hero.getX());
+        int screenY = 300 + (int)(khukharRakshas.getY() - hero.getY());
+        g.fillRect(screenX, screenY, khukharRakshas.getWidth(), khukharRakshas.getHeight());
     }
+
+
+
+
+
+
+
+    
     @Override
     public void keyTyped(KeyEvent e) {
         //

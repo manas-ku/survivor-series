@@ -10,7 +10,7 @@ public class Hero {
 
     }
 
-    public Hero(int x, int y){
+    public Hero(float x, float y){
         this.x = x;
         this.y = y;
     }
@@ -38,17 +38,5 @@ public class Hero {
     public void move(float dx, float dy){
         x=x+dx;
         y=y+dy;
-        if(x<0){
-            x=0;
-        }
-        if(x>780-width){
-            x=780f-width;
-        }
-        if(y<0){
-            y=0;
-        }
-        if(y>560-height){
-            y=560f-height;
-        }
     }
 }
