@@ -1,7 +1,7 @@
 package game;
 
 public class Hero {
-    private int x,y;
+    private float x,y;
     private int width=10, height=10;
     private int health=100;
     private int speed=5;
@@ -16,10 +16,10 @@ public class Hero {
     }
 
 
-    public int getX(){
+    public float getX(){
         return x;
     }
-    public int getY(){
+    public float getY(){
         return y;
     }
     public int getWidth(){
@@ -35,20 +35,20 @@ public class Hero {
         return speed;
     }
 
-    public void move(int dx, int dy){
+    public void move(float dx, float dy){
         x=x+dx;
         y=y+dy;
         if(x<0){
             x=0;
         }
         if(x>780-width){
-            x=780-width;
+            x=780f-width;
         }
         if(y<0){
             y=0;
         }
         if(y>560-height){
-            y=560-height;
+            y=560f-height;
         }
     }
 }

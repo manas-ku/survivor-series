@@ -19,8 +19,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 
     private boolean wPressed=false, sPressed=false, aPressed=false, dPressed=false, spacePressed=false, shiftPressed=false;
 
-    private int cameraX=0;
-    private int cameraY=0;
+    private float cameraX=0;
+    private float cameraY=0;
+    private int gridSize=100;
 
     public GamePanel(){
         setBackground(Color.BLACK);
@@ -56,8 +57,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 
 
     private void update(){
-        int dx = 0;
-        int dy = 0;
+        float dx = 0;
+        float dy = 0;
         if(wPressed){
             dy-=hero.getSpeed();
         }
@@ -69,6 +70,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
         }
         if(dPressed){
             dx+=hero.getSpeed();
+        }
+        if(dx!=0&&dy!=0){
+            dx=dx*0.707f;
+            dy=dy*0.707f;
         }
         hero.move(dx,dy);
         cameraX=cameraX-dx;
@@ -84,6 +89,22 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+
+        // Will add horizontal and vertical lines to make grid
+        g.setColor(Color.darkGray);
+        int iX=(int)cameraX%gridSize;
+        while(iX<=getWidth()){
+            g.drawLine(iX, 0, iX, getHeight());
+            iX+=gridSize;
+        }
+        int iY=(int)cameraY%gridSize;
+        while(iY<=getHeight()){
+            g.drawLine(0, iY, getWidth(), iY);
+            iY+=gridSize;
+        }
+
+        //hero
+
         g.setColor(Color.white);
         g.fillRect(400,300,hero.getWidth(),hero.getHeight());
     }
